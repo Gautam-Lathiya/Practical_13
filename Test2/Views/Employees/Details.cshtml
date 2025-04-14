@@ -1,82 +1,46 @@
 ﻿@model Test2.Models.Employee
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Employee Details";
 }
 
-<h2>Details</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">Employee Details</h2>
 
-<div>
-    <h4>Employee</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Designation.DesignationName)
-        </dt>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <dl class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.Designation.DesignationName)
-        </dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Designation.DesignationName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Designation.DesignationName)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FirstName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.FirstName)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MiddleName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.MiddleName)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MiddleName)
-        </dt>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LastName)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MiddleName)
-        </dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DOB)</dt>
+                <dd class="col-sm-9">@Model.DOB.ToString("dd-MM-yyyy")</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MobileNumber)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.MobileNumber)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Address)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Address)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DOB)
-        </dt>
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Salary)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Salary)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DOB)
-        </dd>
+            </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MobileNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MobileNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
-
-    </dl>
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Id })">Edit</a>
+                <a class="btn btn-secondary" href="@Url.Action("Index")">Back to List</a>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Test2.ViewModels.EmployeeListViewModel>
+
+@{
+    ViewBag.Title = "Employee List";
+}
+
+<h2 class="text-center text-primary my-4">Employee List</h2>
+
+<div class="container">
+    <p>
+        @Html.ActionLink("Create New", "Create", new { @class = "btn btn-success mb-3" })
+    </p>
+
+    <table class="table table-bordered table-striped table-hover shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                <th>@Html.DisplayNameFor(model => model.MiddleName)</th>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <th>@Html.DisplayNameFor(model => model.Designation)</th>
+                <th>@Html.DisplayNameFor(model => model.DOB)</th>
+                <th>@Html.DisplayNameFor(model => model.MobileNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.Address)</th>
+                <th>@Html.DisplayNameFor(model => model.Salary)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MiddleName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Designation)</td>
+                    <td>@item.DOB.ToString("dd-MM-yyyy")</td> <!-- Formatted DOB -->
+                    <td>@Html.DisplayFor(modelItem => item.MobileNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        @Html.ActionLink("Back to List", "Index", "Home", new { @class = "btn btn-secondary btn-lg" })
+    </div>
+</div>

@@ -1,26 +1,27 @@
 ﻿@model Test2.Models.Designation
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Designation Details";
 }
 
-<h2>Details</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">Designation Details</h2>
 
-<div>
-    <h4>Designation</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DesignationName)
-        </dt>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-3 fw-bold">
+                    @Html.DisplayNameFor(model => model.DesignationName)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.DesignationName)
+                </dd>
+            </dl>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DesignationName)
-        </dd>
-
-    </dl>
+    <div class="mt-4 d-flex justify-content-between">
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">Edit</a>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">← Back to List</a>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

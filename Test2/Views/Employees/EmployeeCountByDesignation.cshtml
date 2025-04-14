@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Test2.ViewModels.EmployeeCountByDesignationViewModel>
+
+@{
+    ViewBag.Title = "Employee Count by Designation";
+}
+
+<h2 class="text-center text-primary my-4">Employee Count by Designation</h2>
+
+<div class="container">
+    <table class="table table-bordered table-striped table-hover shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">Designation</th>
+                <th scope="col" class="text-center">Employee Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@item.Designation</td>
+                    <td class="text-center">@item.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        @Html.ActionLink("Back to List", "Index", "Home", new { @class = "btn btn-secondary btn-lg" })
+    </div>
+</div>
+

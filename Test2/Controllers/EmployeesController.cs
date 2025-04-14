@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Test2.Data;
 using Test2.Models;
+using Test2.ViewModels;
 
 namespace Test2.Controllers
 {
@@ -20,6 +21,37 @@ namespace Test2.Controllers
         {
             var employees = db.Employees.Include(e => e.Designation);
             return View(employees.ToList());
+        }
+
+        public ActionResult EmployeeList()
+        {
+            var result = db.Employees.Include("Designation")
+                .Select(e => new EmployeeListViewModel
+                {
+                    Id = e.Id,
+                    FirstName = e.FirstName,
+                    MiddleName = e.MiddleName,
+                    LastName = e.LastName,
+                    Designation = e.Designation.DesignationName,
+                    DOB = e.DOB,
+                    MobileNumber = e.MobileNumber,
+                    Address = e.Address,
+                    Salary = e.Salary
+                }).ToList();
+
+            return View(result);
+        }
+        public ActionResult EmployeeCountByDesignation()
+        {
+            var result = db.Employees
+                .GroupBy(e => e.Designation.DesignationName)
+                .Select(g => new EmployeeCountByDesignationViewModel
+                {
+                    Designation = g.Key,
+                    Count = g.Count()
+                }).ToList();
+
+            return View(result);
         }
 
         // GET: Employees/Details/5
@@ -40,7 +72,7 @@ namespace Test2.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.DesignationId = new SelectList(db.Designations, "Id", "DesignationName");
+            ViewBag.DesignationId = new SelectList(db.Designations.ToList(), "Id", "DesignationName");
             return View();
         }
 
@@ -74,7 +106,7 @@ namespace Test2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DesignationId = new SelectList(db.Designations, "Id", "DesignationName", employee.DesignationId);
+            ViewBag.DesignationId = new SelectList(db.Designations.ToList(), "Id", "DesignationName", employee.DesignationId);
             return View(employee);
         }
 
