@@ -25,7 +25,7 @@ namespace Test2.Controllers
 
         public ActionResult EmployeeList()
         {
-            var result = db.Employees.Include("Designation")
+            var result = db.Employees.Include(e=>e.Designation)
                 .Select(e => new EmployeeListViewModel
                 {
                     Id = e.Id,

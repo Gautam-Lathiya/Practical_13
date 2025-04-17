@@ -60,7 +60,7 @@
 
                 <div class="mb-4">
                     @Html.LabelFor(model => model.DesignationId, "Designation", htmlAttributes: new { @class = "form-label" })
-                    @Html.DropDownList("DesignationId", null, "-- Select Designation --", new { @class = "form-select" })
+                    @Html.DropDownListFor(model => model.DesignationId, null, "-- Select Designation --", new { @class = "form-select" })
                     @Html.ValidationMessageFor(model => model.DesignationId, "", new { @class = "text-danger" })
                 </div>
 
